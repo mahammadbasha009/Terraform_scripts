@@ -1,0 +1,26 @@
+provider.tf
+
+provider "aws" {
+  region     = ""
+  access_key = ""
+  secret_key = ""
+}
+
+main.tf
+
+resource "aws_instance" "web_app" {
+  ami           = "ami-0fef201115eefe936"
+  instance_type = "t3.micro"
+
+  tags = {
+    Name = "Prevent_ec2"
+  }
+  
+  lifecycle {
+  prevent_destroy=true
+  }
+}
+
+make it false destroy resource
+
+
