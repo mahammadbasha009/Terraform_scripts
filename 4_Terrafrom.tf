@@ -1,0 +1,44 @@
+provider.tf
+
+provider "aws" {
+  region     = ""
+  access_key = ""
+  secret_key = ""
+}
+
+main.tf
+
+resource "aws_instance" "web_app" {
+  ami           = "ami-0fef201115eefe936"
+  instance_type = var.instance_type
+
+  tags = {
+    Name = "Terra"
+  }
+}
+
+variable.tf
+
+variable "instance_type" {
+}
+
+variable "environment" {
+}
+
+
+test.tfvars
+instance_type = "t3.micro"
+environment="test"
+
+prod.tfvars
+instance_type = "c7i.flex.large"
+environment="prod"
+
+
+Run below commands :
+
+terraform validate -var-file="test.tfvars" --auto-approve
+terraform apply -var-file="test.tfvars" --auto-approve
+
+terraform validate -var-file="prod.tfvars" --auto-approve
+terraform apply -var-file="prod.tfvars" --auto-approve
