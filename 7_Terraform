@@ -1,0 +1,13 @@
+create bucket and upload file
+
+main.tf
+
+resource "aws_s3_bucket" "my_bucket" {
+	bucket="basha34567"
+}
+
+resource "bucket_object" "upoload_obj" {
+	bucket = aws_s3_bucket.my_bucket.bucket
+	key = file.txt
+	source= file.txt
+}
